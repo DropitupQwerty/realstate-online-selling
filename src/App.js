@@ -1,5 +1,3 @@
-import logo from './logo.svg';
-import './App.css';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '../src/utils/theme';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';

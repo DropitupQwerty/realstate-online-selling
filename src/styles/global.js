@@ -10,5 +10,10 @@ const global = {
     color: '#fff',
     background: '#001844',
   },
+  btnPrimary: {
+    color: '#fff',
+    fontSize: '20px',
+    background: '#1A73E8',
+  },
 };
 export default global;

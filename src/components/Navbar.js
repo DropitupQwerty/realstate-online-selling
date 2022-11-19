@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
+import global from '../styles/global';
 
 export default function Navbar() {
   return (
@@ -14,7 +16,10 @@ export default function Navbar() {
         </ul>
         <ul className="nav-list">
           <li className="nav-item">
-            <Link>HOME</Link>
+            <Link to="/">HOME</Link>
+          </li>
+          <li className="nav-item">
+            <Link>RENT</Link>
           </li>
           <li className="nav-item">
             <Link>ABOUT US</Link>
@@ -23,7 +28,13 @@ export default function Navbar() {
             <Link>CONTACT US</Link>
           </li>
           <li className="nav-item">
-            <Link>ACCOUNT</Link>
+            <Button
+              sx={{ ...global.btnPrimary }}
+              component={Link}
+              to="/sign-up"
+            >
+              Inquire
+            </Button>
           </li>
         </ul>
       </nav>
