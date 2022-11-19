@@ -18,9 +18,7 @@ export default function Navbar() {
           <li className="nav-item">
             <Link to="/">HOME</Link>
           </li>
-          <li className="nav-item">
-            <Link>RENT</Link>
-          </li>
+
           <li className="nav-item">
             <Link>ABOUT US</Link>
           </li>
@@ -33,7 +31,7 @@ export default function Navbar() {
               component={Link}
               to="/sign-up"
             >
-              Inquire
+              Inquire Now
             </Button>
           </li>
         </ul>

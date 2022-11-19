@@ -40,6 +40,38 @@ export default function SignUp() {
     <div>
       <Navbar />
       <div className="login-container">
+        <Box
+          sx={{
+            width: '40%',
+            background: '#001844',
+            padding: '40px 20px',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          <Typography
+            sx={{
+              color: '#fff',
+              lineSpacing: '1.2rem',
+              letterSpacing: '2px',
+              textAlign: 'justify',
+            }}
+            variant="h4"
+          >
+            Lancaster New City in Cavite is a master-planned township where
+            everything your family could possibly need are within reach. Apart
+            from offering premium yet affordable townhouses and single attached
+            homes for sale in Cavite, we also have The Parish of the Holy
+            Family, a place of worship inside Lancaster New City; LNC Grounds,
+            perfect venues for social, commercial, and community activities of
+            the homeowners and their guests; Leighton Hall, a clubhouse with an
+            outdoor pool; The Square, a lifestyle community mall; and St. Edward
+            School. With our affordable house and lot rates in Cavite, there
+            really isn’t a reason for you to keep renting on a townhouse that
+            isn’t yours. Get in touch with one of our real estate agents today
+            to see how you can move into your dream home as soon as possible!
+          </Typography>
+        </Box>
         <Paper
           sx={{ width: '600px', padding: '20px', margin: '50px' }}
           elevation={2}

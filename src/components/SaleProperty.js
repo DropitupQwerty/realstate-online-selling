@@ -1,11 +1,28 @@
-import React from 'react';
-import house1 from '../assets/img/house1.jpg';
-import house2 from '../assets/img/house2.jpg';
-import house3 from '../assets/img/house3.jpg';
-import house4 from '../assets/img/house4.jpg';
-import { Grid, Card, CardMedia, CardContent, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import global from '../styles/global';
+import {
+  Grid,
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  CardActions,
+  Button,
+  Paper,
+} from '@mui/material';
+import { getProperties } from './../fakeApi/fakehouesapi';
 
 export default function SaleProperty() {
+  const [saledProperties, setSaledProperties] = useState([]);
+
+  useEffect(() => {
+    const getProp = () => {
+      const properties = getProperties();
+      setSaledProperties(properties);
+    };
+    getProp();
+  }, []);
+
   return (
     <div>
       <div className="properties-items">
@@ -13,33 +30,46 @@ export default function SaleProperty() {
           <Grid
             container
             spacing={2}
-            sx={{
-              width: '80%',
-              display: 'flex',
-              justifyContent: 'center',
-            }}
+            sx={{ display: 'flex', justifyContent: 'center' }}
           >
-            <Grid item xs={4}>
-              <Card>
-                <CardMedia>
-                  <img className="image" src={house1} alt="first houese" />
-                </CardMedia>
-                <CardContent>
-                  <Typography variant="h4">1 Apartment</Typography>
-                  <Typography variant="h5">Taguig Manila</Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item xs={4}>
-              <img src={house2} alt="first houese" />
-            </Grid>
-            <Grid item xs={4}>
-              <img src={house3} alt="first houese" />
-            </Grid>
-            {/* <Grid item xs={4}>
-                  <img src={house4} alt="first houese" />
-                </Grid> */}
+            {saledProperties.map((saledProperty) => {
+              const { location, price, facilities, image, property } =
+                saledProperty;
+              return (
+                <Grid item xs={5}>
+                  <Card>
+                    <CardMedia>
+                      <img className="image" src={image} alt="first houese" />
+                    </CardMedia>
+                    <CardContent
+                      sx={{ display: 'flex', flexDirection: 'column' }}
+                    >
+                      <Typography variant="h4">
+                        <span className="sale-header center">{property}</span>
+                      </Typography>
+                      <Typography variant="caption" sx={{ fontSize: '13px' }}>
+                        <span className="sale-header">Location :</span>{' '}
+                        {location}
+                      </Typography>
+                      <Typography variant="caption" sx={{ fontSize: '13px' }}>
+                        <span className="sale-header">Price :</span> {price}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Button sx={{ ...global.btnPrimary }} fullWidth>
+                        INQUIRE
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              );
+            })}
           </Grid>
+        </div>
+      </div>
+      <div>
+        <div className="footer-container">
+          <footer>Add me like a shit</footer>
         </div>
       </div>
     </div>
