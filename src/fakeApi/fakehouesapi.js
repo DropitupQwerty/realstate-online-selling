@@ -9,7 +9,12 @@ const property = [
     location: 'San Ildefonso, Bulacan',
     price: 20000000,
     facilities: 'Bedroom',
-    image: house1,
+    image: [
+      house1,
+      'https://images.pexels.com/photos/101808/pexels-photo-101808.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      'https://images.pexels.com/photos/14426078/pexels-photo-14426078.jpeg',
+      'https://images.pexels.com/photos/14426182/pexels-photo-14426182.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    ],
     hectare: 230,
     property: 'Resort with 18 rooms',
   },
@@ -18,7 +23,7 @@ const property = [
     location: 'Baliuag, Bulacan',
     price: 375000,
     facilities: 'Bedroom',
-    image: house2,
+    image: [house2],
     hectare: 400,
     property: 'Barns and Water Tanks',
   },
@@ -27,7 +32,7 @@ const property = [
     location: 'San Rafael, Bulacan',
     price: 5524000,
     facilities: 'Bedroom',
-    image: house3,
+    image: [house3],
     hectare: 126,
     property: '2 Storey house',
   },
@@ -36,7 +41,7 @@ const property = [
     location: 'Marcela Village ,Blk 10 lot 32',
     price: 20000000,
     facilities: 'Bedroom',
-    image: house4,
+    image: [house4],
     hectare: 100,
     property: 'Complete House',
   },
@@ -44,4 +49,8 @@ const property = [
 
 export const getProperties = () => {
   return property;
+};
+
+export const getProperty = (id) => {
+  return property.find((p) => p.id === id);
 };
