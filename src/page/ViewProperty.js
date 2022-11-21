@@ -15,7 +15,7 @@ export default function ViewProperty() {
     setIndex(selectedIndex);
   };
 
-  const { image, property: prop } = property || {};
+  const { image, property: prop, description } = property || {};
 
   console.log('Path id', intId);
   console.log(typeof intId);
@@ -29,7 +29,7 @@ export default function ViewProperty() {
     getProp();
   }, [id]);
 
-  console.log(property);
+  console.log(image);
 
   return (
     <div>
@@ -38,43 +38,16 @@ export default function ViewProperty() {
 
       <div className="carousel-container">
         <Carousel activeIndex={index} onSelect={handleSelect}>
-          <Carousel.Item>
-            <img
-              className="property-img"
-              src="https://images.pexels.com/photos/14426078/pexels-photo-14426078.jpeg"
-              alt="First slide"
-            />
-            <Carousel.Caption>
-              <h3>First slide label</h3>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="property-img"
-              src="https://images.pexels.com/photos/101808/pexels-photo-101808.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              alt="Second slide"
-            />
-
-            <Carousel.Caption>
-              <h3>Second slide label</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="property-img"
-              src="https://images.pexels.com/photos/14426182/pexels-photo-14426182.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              alt="Third slide"
-            />
-
-            <Carousel.Caption>
-              <h3>Third slide label</h3>
-              <p>
-                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-              </p>
-            </Carousel.Caption>
-          </Carousel.Item>
+          {image?.map((img) => {
+            return (
+              <Carousel.Item>
+                <img className="property-img" src={img} alt={img} />
+                <Carousel.Caption>
+                  <h3>{prop}</h3>
+                </Carousel.Caption>
+              </Carousel.Item>
+            );
+          })}
         </Carousel>
       </div>
     </div>
