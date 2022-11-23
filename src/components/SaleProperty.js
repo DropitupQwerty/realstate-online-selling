@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 import { getProperties } from './../fakeApi/fakehouesapi';
 import { Link } from 'react-router-dom';
+import Footer from './Footer';
 
 export default function SaleProperty() {
   const [saledProperties, setSaledProperties] = useState([]);
@@ -78,9 +79,7 @@ export default function SaleProperty() {
         </div>
       </div>
       <div>
-        <div className="footer-container">
-          <footer>Add me like a shit</footer>
-        </div>
+        <Footer />
       </div>
     </div>
   );

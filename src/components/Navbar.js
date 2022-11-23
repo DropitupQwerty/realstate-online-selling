@@ -1,30 +1,25 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
 import global from '../styles/global';
 
 export default function Navbar() {
+  const [auth, setAuth] = useState(false);
 
-
-  const [auth,setAuth] = useState(false);
-
-  useEffect(()=>{
-
+  useEffect(() => {
     const interval = setInterval(() => {
-      let uid = sessionStorage.getItem("UID");
-      if(!uid){
+      let uid = sessionStorage.getItem('UID');
+      if (!uid) {
         setAuth(false);
-      }
-      else{
-        setAuth(true)
+      } else {
+        setAuth(true);
       }
     }, 10);
+  }, []);
 
-  },[]);
-
-  const logout = () =>{
-    sessionStorage.removeItem("UID");
-  }
+  const logout = () => {
+    sessionStorage.removeItem('UID');
+  };
 
   return (
     <div>
@@ -32,7 +27,7 @@ export default function Navbar() {
         <ul className="nav-list">
           <li className="nav-item">
             <span className="company-name">
-              <Link>Real State Company</Link>
+              <Link to="/">Real State Company</Link>
             </span>
           </li>
         </ul>
@@ -48,22 +43,19 @@ export default function Navbar() {
             <Link>CONTACT US</Link>
           </li>
           <li className="nav-item">
-           {
-            auth?  <Button
-            sx={{ ...global.btnPrimary }}
-            onClick={logout}
-            
-          >
-            Logout
-          </Button> : 
-           <Button
-           sx={{ ...global.btnPrimary }}
-           component={Link}
-           to="/sign-up"
-         >
-           Inquire Now
-         </Button>
-           }
+            {auth ? (
+              <Button sx={{ ...global.btnPrimary }} onClick={logout}>
+                Logout
+              </Button>
+            ) : (
+              <Button
+                sx={{ ...global.btnPrimary }}
+                component={Link}
+                to="/sign-up"
+              >
+                Inquire Now
+              </Button>
+            )}
           </li>
         </ul>
       </nav>

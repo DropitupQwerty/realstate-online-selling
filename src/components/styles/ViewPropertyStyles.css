@@ -1,3 +1,7 @@
+:root {
+  --primary-text-color: #001844;
+}
+
 .property-img {
   height: 500px;
   width: 100%;
@@ -6,4 +10,74 @@
 
 .carousel-container {
   height: 40%;
+  width: 50%;
+}
+
+.property-description {
+  /* width: 70%; */
+  color: var(--primary-text-color);
+  margin: 40px 40px;
+}
+
+.property-description h1 {
+  color: var(--primary-text-color);
+  margin-bottom: 30px;
+  letter-spacing: 5px;
+}
+
+.property-description h2 {
+  text-align: justify;
+}
+
+.property-detail-container {
+  width: 80%;
+  margin: 0 40px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.view-property-container {
+  display: flex;
+  margin: 50px;
+  height: 100%;
+}
+
+.view-property-container span {
+  font-weight: 700;
+}
+
+.property-btn {
+  justify-self: flex-end;
+}
+
+.property-name span {
+  color: #1a73e8;
+}
+
+.property-price span {
+  color: #1a73e8;
+}
+
+.property-facilities {
+  margin: 20px 0;
+}
+
+.property-facilities h2 {
+  font-weight: 700;
+}
+
+.property-facilities h1 {
+  display: flex;
+  flex: row;
+}
+
+.property-facilities-item {
+  display: flex;
+  align-items: center;
+}
+
+.property-facilities-item span {
+  font-size: 20px;
+  margin-left: 12px;
 }
