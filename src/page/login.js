@@ -5,34 +5,62 @@ import {
   Paper,
   Button,
   Typography,
+  Box,
 } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from './../components/Navbar';
 import global from '../styles/global';
 
 export default function Login() {
+  const [login, setLogin] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleChange = (e) => {
+    setLogin({ ...login, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div>
       <div>
         <Navbar />
       </div>
       <div>
-        <Paper sx={{ width: '400px', padding: '30px' }}>
-          <Typography variant="h3" sx={{ marginBottom: '20px' }}>
-            Login
-          </Typography>
-          <FormGroup>
-            <FormControl sx={{ ...global.formInput }}>
-              <OutlinedInput placeholder="Email" />
-            </FormControl>
-            <FormControl sx={{ ...global.formInput }}>
-              <OutlinedInput placeholder="Password" />
-            </FormControl>
-            <FormControl>
-              <Button sx={{ ...global.buttonLogin }}>Login</Button>
-            </FormControl>
-          </FormGroup>
-        </Paper>
+        <Box component="form" onSubmit={handleSubmit}>
+          <Paper sx={{ width: '400px', padding: '30px' }}>
+            <Typography variant="h3" sx={{ marginBottom: '20px' }}>
+              Login
+            </Typography>
+            <FormGroup>
+              <FormControl sx={{ ...global.formInput }}>
+                <OutlinedInput
+                  placeholder="Email"
+                  name="email"
+                  value={login.email}
+                  onChange={handleChange}
+                />
+              </FormControl>
+              <FormControl sx={{ ...global.formInput }}>
+                <OutlinedInput
+                  placeholder="Password"
+                  name="password"
+                  value={login.password}
+                  onChange={handleChange}
+                />
+              </FormControl>
+              <FormControl>
+                <Button sx={{ ...global.buttonLogin }} type="submit">
+                  Login
+                </Button>
+              </FormControl>
+            </FormGroup>
+          </Paper>
+        </Box>
       </div>
     </div>
   );

@@ -18,7 +18,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import global from '../styles/global';
 import Navbar from '../components/Navbar';
 import { Link } from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
 export default function SignUp() {
   const [userInfo, setUserInfo] = useState({
     fullname: '',
@@ -36,9 +36,11 @@ export default function SignUp() {
     e.preventDefault();
     // console.log(userInfo)
 
-    axios.post("http://localhost:3001/user/create",userInfo).then((response)=>{
-      console.log(response.data);
-    })
+    axios
+      .post('http://localhost:3001/user/create', userInfo)
+      .then((response) => {
+        console.log(response.data);
+      });
 
     // e.target.reset;
     setUserInfo({
@@ -47,7 +49,7 @@ export default function SignUp() {
       password: '',
       address: '',
       contact: '',
-    })
+    });
   };
 
   return (
@@ -107,6 +109,7 @@ export default function SignUp() {
                   value={userInfo.fullname}
                   onChange={handleChange}
                   endAdornment={<PersonIcon fontSize="large" />}
+                  required
                 ></OutlinedInput>
               </FormControl>
               <FormControl>
@@ -118,6 +121,7 @@ export default function SignUp() {
                   value={userInfo.contact}
                   onChange={handleChange}
                   endAdornment={<ContactsIcon fontSize="large" />}
+                  required
                 ></OutlinedInput>
               </FormControl>
               <FormControl>
@@ -129,6 +133,7 @@ export default function SignUp() {
                   value={userInfo.address}
                   onChange={handleChange}
                   endAdornment={<HomeIcon fontSize="large" />}
+                  required
                 ></OutlinedInput>
               </FormControl>
               <FormControl>
@@ -140,6 +145,7 @@ export default function SignUp() {
                   value={userInfo.email}
                   onChange={handleChange}
                   endAdornment={<EmailIcon fontSize="large" />}
+                  required
                 ></OutlinedInput>
               </FormControl>
               <FormControl>
@@ -151,6 +157,7 @@ export default function SignUp() {
                   value={userInfo.password}
                   onChange={handleChange}
                   endAdornment={<PasswordIcon fontSize="large" />}
+                  required
                 ></OutlinedInput>
               </FormControl>
               <FormControl>
