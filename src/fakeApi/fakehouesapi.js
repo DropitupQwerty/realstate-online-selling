@@ -12,6 +12,7 @@ const property = [
     image: house1,
     hectare: 230,
     property: 'Resort with 18 rooms',
+    
   },
   {
     id: 2,

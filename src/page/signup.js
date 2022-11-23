@@ -18,14 +18,14 @@ import EmailIcon from '@mui/icons-material/Email';
 import global from '../styles/global';
 import Navbar from '../components/Navbar';
 import { Link } from 'react-router-dom';
-
+import axios from 'axios'
 export default function SignUp() {
   const [userInfo, setUserInfo] = useState({
     fullname: '',
     email: '',
     password: '',
     address: '',
-    phoneNumber: '',
+    contact: '',
   });
 
   const handleChange = (e) => {
@@ -34,6 +34,20 @@ export default function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // console.log(userInfo)
+
+    axios.post("http://localhost:3001/user/create",userInfo).then((response)=>{
+      console.log(response.data);
+    })
+
+    // e.target.reset;
+    setUserInfo({
+      fullname: '',
+      email: '',
+      password: '',
+      address: '',
+      contact: '',
+    })
   };
 
   return (
@@ -100,8 +114,8 @@ export default function SignUp() {
                   type="number"
                   placeholder="(+639) Phone Number"
                   sx={{ ...global.formInput }}
-                  name="phoneNumber"
-                  value={userInfo.phoneNumber}
+                  name="contact"
+                  value={userInfo.contact}
                   onChange={handleChange}
                   endAdornment={<ContactsIcon fontSize="large" />}
                 ></OutlinedInput>
