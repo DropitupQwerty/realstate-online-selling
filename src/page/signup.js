@@ -19,6 +19,7 @@ import global from '../styles/global';
 import Navbar from '../components/Navbar';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Login from './login';
 export default function SignUp() {
   const [userInfo, setUserInfo] = useState({
     fullname: '',
@@ -27,6 +28,7 @@ export default function SignUp() {
     address: '',
     contact: '',
   });
+  const [open, setOpen] = useState(false);
 
   const handleChange = (e) => {
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
@@ -52,10 +54,18 @@ export default function SignUp() {
     });
   };
 
+  const handleOpenLogin = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <div>
       <Navbar />
       <div className="login-container">
+        <Login open={open} cancel={handleClose} />
         <Box
           sx={{
             width: '40%',
@@ -74,7 +84,7 @@ export default function SignUp() {
             }}
             variant="h4"
           >
-            Lancaster New City in Cavite is a master-planned township where
+            Realstate New City in Cavite is a master-planned township where
             everything your family could possibly need are within reach. Apart
             from offering premium yet affordable townhouses and single attached
             homes for sale in Cavite, we also have The Parish of the Holy
@@ -178,7 +188,8 @@ export default function SignUp() {
                     textAlign: 'center',
                   }}
                 >
-                  Already Have Account? <Link to="/login">Login</Link>
+                  Already Have Account?{' '}
+                  <Link onClick={handleOpenLogin}>Login</Link>
                 </FormHelperText>
               </FormControl>
             </FormGroup>

@@ -6,14 +6,17 @@ import {
   Button,
   Typography,
   Box,
+  Dialog,
+  FormHelperText,
+  IconButton,
 } from '@mui/material';
-import React,{useState,useEffect} from 'react';
-import Navbar from './../components/Navbar';
+import CloseIcon from '@mui/icons-material/Close';
+import React, { useState, useEffect } from 'react';
 import global from '../styles/global';
-import axios from 'axios'
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
-
-export default function Login() {
+export default function Login({ open, cancel }) {
   const [login, setLogin] = useState({
     email: '',
     password: '',
@@ -27,52 +30,78 @@ export default function Login() {
     e.preventDefault();
 
     axios.post('http://localhost:3001/user/login', login).then((response) => {
-      if(response.data.error){
+      if (response.data.error) {
         console.log(response.data.error);
-        return
+        return;
       }
-      console.log(response.data)
-      sessionStorage.setItem("UID",response.data.uid);
+      console.log(response.data);
+      sessionStorage.setItem('UID', response.data.uid);
     });
   };
 
   return (
     <div>
-      <div>
-        <Navbar />
-      </div>
-      <div>
+      <Dialog open={open}>
         <Box component="form" onSubmit={handleSubmit}>
-          <Paper sx={{ width: '400px', padding: '30px' }}>
-            <Typography variant="h3" sx={{ marginBottom: '20px' }}>
+          <Paper
+            sx={{
+              width: '600px',
+              padding: '30px',
+              height: '400px',
+              display: 'flex',
+              justifyContent: 'center',
+              flexDirection: 'column',
+              position: 'relative',
+            }}
+          >
+            <IconButton
+              sx={{
+                position: 'absolute',
+                top: '10px',
+                right: '20px',
+              }}
+              onClick={cancel}
+            >
+              <CloseIcon sx={{ fontSize: '30px' }} />
+            </IconButton>
+            <Typography
+              variant="h3"
+              sx={{ margin: '0px 0 20px 0', fontWeight: '700' }}
+            >
               Login
             </Typography>
             <FormGroup>
-              <FormControl sx={{ ...global.formInput }}>
+              <FormControl>
                 <OutlinedInput
                   placeholder="Email"
                   name="email"
                   value={login.email}
                   onChange={handleChange}
+                  sx={{ ...global.formInput }}
                 />
               </FormControl>
-              <FormControl sx={{ ...global.formInput }}>
+              <FormControl>
                 <OutlinedInput
                   placeholder="Password"
                   name="password"
                   value={login.password}
                   onChange={handleChange}
+                  sx={{ ...global.formInput }}
                 />
               </FormControl>
               <FormControl>
                 <Button sx={{ ...global.buttonLogin }} type="submit">
                   Login
                 </Button>
+                <FormHelperText sx={{ fontSize: '13px' }}>
+                  By continuing, you agree to Canva's <Link>Terms of Use</Link>{' '}
+                  . Read our <Link>Privacy Policy</Link>
+                </FormHelperText>
               </FormControl>
             </FormGroup>
           </Paper>
         </Box>
-      </div>
+      </Dialog>
     </div>
   );
 }
