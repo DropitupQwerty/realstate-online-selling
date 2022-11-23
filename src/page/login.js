@@ -7,10 +7,11 @@ import {
   Typography,
   Box,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React,{useState,useEffect} from 'react';
 import Navbar from './../components/Navbar';
 import global from '../styles/global';
-import axios from 'axios';
+import axios from 'axios'
+
 
 export default function Login() {
   const [login, setLogin] = useState({
@@ -26,7 +27,12 @@ export default function Login() {
     e.preventDefault();
 
     axios.post('http://localhost:3001/user/login', login).then((response) => {
-      console.log(response.data);
+      if(response.data.error){
+        console.log(response.data.error);
+        return
+      }
+      console.log(response.data)
+      sessionStorage.setItem("UID",response.data.uid);
     });
   };
 

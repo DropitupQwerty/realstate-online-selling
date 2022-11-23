@@ -1,9 +1,31 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
 import global from '../styles/global';
 
 export default function Navbar() {
+
+
+  const [auth,setAuth] = useState(false);
+
+  useEffect(()=>{
+
+    const interval = setInterval(() => {
+      let uid = sessionStorage.getItem("UID");
+      if(!uid){
+        setAuth(false);
+      }
+      else{
+        setAuth(true)
+      }
+    }, 10);
+
+  },[]);
+
+  const logout = () =>{
+    sessionStorage.removeItem("UID");
+  }
+
   return (
     <div>
       <nav className="nav-container">
@@ -26,13 +48,22 @@ export default function Navbar() {
             <Link>CONTACT US</Link>
           </li>
           <li className="nav-item">
-            <Button
-              sx={{ ...global.btnPrimary }}
-              component={Link}
-              to="/sign-up"
-            >
-              Inquire Now
-            </Button>
+           {
+            auth?  <Button
+            sx={{ ...global.btnPrimary }}
+            onClick={logout}
+            
+          >
+            Logout
+          </Button> : 
+           <Button
+           sx={{ ...global.btnPrimary }}
+           component={Link}
+           to="/sign-up"
+         >
+           Inquire Now
+         </Button>
+           }
           </li>
         </ul>
       </nav>
