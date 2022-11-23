@@ -10,6 +10,7 @@ import {
 import React, { useState } from 'react';
 import Navbar from './../components/Navbar';
 import global from '../styles/global';
+import axios from 'axios';
 
 export default function Login() {
   const [login, setLogin] = useState({
@@ -23,6 +24,10 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    axios.post('http://localhost:3001/user/login', login).then((response) => {
+      console.log(response.data);
+    });
   };
 
   return (
