@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import { getProperty } from '../fakeApi/fakehouesapi';
 import '../components/styles/ViewPropertyStyles.css';
 import Carousel from 'react-bootstrap/Carousel';
-import { Button } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
 import global from '../styles/global';
 import Footer from '../components/Footer';
 
@@ -12,12 +12,14 @@ import HotelIcon from '@mui/icons-material/Hotel';
 import BathroomIcon from '@mui/icons-material/Bathroom';
 import KitchenIcon from '@mui/icons-material/Kitchen';
 import VideocamIcon from '@mui/icons-material/Videocam';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 export default function ViewProperty() {
   const [property, setProperty] = useState();
   const { id } = useParams();
   const intId = parseInt(id);
   const [index, setIndex] = useState(0);
+  const navigate = useNavigate();
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
@@ -44,12 +46,21 @@ export default function ViewProperty() {
     getProp();
   }, [id]);
 
-  // console.log(image);
-
   return (
     <div>
       <Navbar />
       {/* <img className="property-img" src={image} alt={prop}></img> */}
+
+      <div className="previous-btn">
+        <Button
+          variant="outlined"
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          <ArrowBackIosIcon sx={{ fontSize: '30px' }} />
+        </Button>
+      </div>
 
       <div className="view-property-container">
         <div className="carousel-container">
