@@ -1,0 +1,9 @@
+.property-img {
+  height: 500px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.carousel-container {
+  height: 40%;
+}

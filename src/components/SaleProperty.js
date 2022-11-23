@@ -11,6 +11,7 @@ import {
   Paper,
 } from '@mui/material';
 import { getProperties } from './../fakeApi/fakehouesapi';
+import { Link } from 'react-router-dom';
 
 export default function SaleProperty() {
   const [saledProperties, setSaledProperties] = useState([]);
@@ -33,13 +34,17 @@ export default function SaleProperty() {
             sx={{ display: 'flex', justifyContent: 'center' }}
           >
             {saledProperties.map((saledProperty) => {
-              const { location, price, facilities, image, property } =
+              const { location, price, facilities, image, property, id } =
                 saledProperty;
               return (
-                <Grid item xs={5}>
+                <Grid key={id} item xs={5}>
                   <Card>
                     <CardMedia>
-                      <img className="image" src={image} alt="first houese" />
+                      <img
+                        className="image"
+                        src={image[0]}
+                        alt="first houese"
+                      />
                     </CardMedia>
                     <CardContent
                       sx={{ display: 'flex', flexDirection: 'column' }}
@@ -56,8 +61,13 @@ export default function SaleProperty() {
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <Button sx={{ ...global.btnPrimary }} fullWidth>
-                        INQUIRE
+                      <Button
+                        sx={{ ...global.btnPrimary }}
+                        component={Link}
+                        to={`/viewproperty/${id}`}
+                        fullWidth
+                      >
+                        VIEW
                       </Button>
                     </CardActions>
                   </Card>
