@@ -8,14 +8,15 @@ import {
   Typography,
   CardActions,
   Button,
-  Paper,
 } from '@mui/material';
 import { getProperties } from './../fakeApi/fakehouesapi';
 import { Link } from 'react-router-dom';
 import Footer from './Footer';
+import Facilities from './Facilities';
 
 export default function SaleProperty() {
   const [saledProperties, setSaledProperties] = useState([]);
+  let nf = new Intl.NumberFormat('en-US');
 
   useEffect(() => {
     const getProp = () => {
@@ -58,8 +59,10 @@ export default function SaleProperty() {
                         {location}
                       </Typography>
                       <Typography variant="caption" sx={{ fontSize: '13px' }}>
-                        <span className="sale-header">Price :</span> {price}
+                        <span className="sale-header"> Price :</span>₱
+                        {nf.format(price)}
                       </Typography>
+                      <Facilities facilities={facilities} fsize={'20px'} />
                     </CardContent>
                     <CardActions>
                       <Button

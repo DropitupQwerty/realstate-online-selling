@@ -17,8 +17,10 @@ const property = [
     ],
     hectare: 230,
     property: 'Resort with 18 rooms',
+    locationURL:
+      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d123291.07805967338!2d120.91584607209475!3d15.056621408043235!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x339703019286e87b%3A0x103e9bd52fbe9c29!2sSan%20Ildefonso%2C%20Bulacan!5e0!3m2!1sen!2sph!4v1669468488651!5m2!1sen!2sph',
     description:
-      'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,',
+      'Condo living can be different from the usual with Kizuna Heights&39; Ikigai Lifestyle. Students who are just at the corners of the University Belt can pursue their professional goals while having a delicate balance between their passion and personal lives. Near the central business districts such as Quezon City, and Makati City, this is where professionals can also build their future and live in a location within reach.',
   },
   {
     id: 2,
@@ -28,6 +30,8 @@ const property = [
     image: [house2],
     hectare: 400,
     property: 'Barns and Water Tanks',
+    locationURL:
+      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d123327.07189897058!2d120.907960521187!3d14.994315148537193!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397005fc6e4e2c5%3A0x4b387b2ddd4537de!2sSan%20Rafael%2C%20Bulacan!5e0!3m2!1sen!2sph!4v1669470772713!5m2!1sen!2sph',
     description: 'lorem alot',
   },
   {

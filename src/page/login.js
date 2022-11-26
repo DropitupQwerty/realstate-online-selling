@@ -14,9 +14,10 @@ import CloseIcon from '@mui/icons-material/Close';
 import React, { useState, useEffect } from 'react';
 import global from '../styles/global';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Login({ open, cancel }) {
+  const navigate = useNavigate();
   const [login, setLogin] = useState({
     email: '',
     password: '',
@@ -36,6 +37,7 @@ export default function Login({ open, cancel }) {
       }
       console.log(response.data);
       sessionStorage.setItem('UID', response.data.uid);
+      navigate('/');
     });
   };
 
@@ -78,6 +80,7 @@ export default function Login({ open, cancel }) {
                   value={login.email}
                   onChange={handleChange}
                   sx={{ ...global.formInput }}
+                  required
                 />
               </FormControl>
               <FormControl>
@@ -87,6 +90,7 @@ export default function Login({ open, cancel }) {
                   value={login.password}
                   onChange={handleChange}
                   sx={{ ...global.formInput }}
+                  required
                 />
               </FormControl>
               <FormControl>

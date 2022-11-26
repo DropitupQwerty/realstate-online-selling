@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
 import global from '../styles/global';
 
 export default function Navbar() {
+  const navigate = useNavigate();
   const [auth, setAuth] = useState(false);
 
   useEffect(() => {
@@ -19,6 +20,7 @@ export default function Navbar() {
 
   const logout = () => {
     sessionStorage.removeItem('UID');
+    navigate('/');
   };
 
   return (
