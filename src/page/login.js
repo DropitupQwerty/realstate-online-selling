@@ -16,7 +16,7 @@ import global from '../styles/global';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 
-export default function Login({ open, cancel }) {
+export default function Login({ open, cancel, isNavigate = false }) {
   const navigate = useNavigate();
   const [login, setLogin] = useState({
     email: '',
@@ -35,6 +35,7 @@ export default function Login({ open, cancel }) {
         console.log(response.data.error);
         return;
       }
+
       console.log(response.data);
       sessionStorage.setItem('UID', response.data.uid);
       navigate('/');

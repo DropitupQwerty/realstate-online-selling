@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import {
+  Link,
+  Navigate,
+  useLocation,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import { getProperty } from '../fakeApi/fakehouesapi';
 import '../components/styles/ViewPropertyStyles.css';
@@ -10,6 +16,8 @@ import Footer from '../components/Footer';
 
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import Facilities from '../components/Facilities';
+import Reservation from './Inquire';
+import Login from './login';
 
 export default function ViewProperty() {
   const [property, setProperty] = useState();
@@ -17,10 +25,15 @@ export default function ViewProperty() {
   const intId = parseInt(id);
   const [index, setIndex] = useState(0);
   const navigate = useNavigate();
+  const [auth, setAuth] = useState(false);
+  const [open, setOpen] = useState(false);
+  const location = useLocation();
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
+
+  console.log(location);
 
   const {
     image,
@@ -28,28 +41,50 @@ export default function ViewProperty() {
     description,
     price,
     facilities,
-    location,
+    location: loc,
     locationURL,
   } = property || {};
 
   let nf = new Intl.NumberFormat('en-US'); // "1,234,567,890"
-  console.log('Path id', intId);
-  console.log(typeof intId);
 
   const getProp = () => {
     const prop = getProperty(intId);
     setProperty(prop);
   };
 
+  const handleLogin = () => {
+    setOpen(true);
+  };
+
+  const handleCloseLogin = () => {
+    setOpen(false);
+  };
+
+  const handleNavigate = () => {
+    navigate(`/reservation/${intId}`);
+  };
+
   useEffect(() => {
     getProp();
   }, [id]);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      let uid = sessionStorage.getItem('UID');
+      if (!uid) {
+        setAuth(false);
+      } else {
+        setAuth(true);
+      }
+    }, 10);
+  }, []);
+
   return (
     <div>
       <Navbar />
-      {/* <img className="property-img" src={image} alt={prop}></img> */}
-
+      {!auth && (
+        <Login open={open} cancel={handleCloseLogin} isNavigate={true} />
+      )}
       <div className="previous-btn">
         <Button
           variant="outlined"
@@ -83,7 +118,7 @@ export default function ViewProperty() {
 
           <div className="property-price">
             <h1>
-              <span> Location: </span> {location}
+              <span> Location: </span> {loc}
             </h1>
           </div>
 
@@ -94,19 +129,42 @@ export default function ViewProperty() {
           </div>
 
           <Facilities facilities={facilities} />
-          <div className="property-btn">
-            <Button
-              sx={{
-                fontSize: '20px',
-                justifySelf: 'flex-end',
-                alignSelf: 'flex-end',
-              }}
-              variant="outlined"
-              fullWidth
-            >
-              Inquire
-            </Button>
-          </div>
+
+          {auth ? (
+            <div className="property-btn">
+              <Button
+                sx={{
+                  ...global.buttonLogin,
+                }}
+                fullWidth
+                onClick={handleNavigate}
+              >
+                Inquire
+              </Button>
+              <Button
+                fullWidth
+                variant="outlined"
+                sx={{ fontSize: '20px', marginTop: '20px' }}
+              >
+                Reserve Property
+              </Button>
+            </div>
+          ) : (
+            <div className="property-btn">
+              <Button
+                sx={{
+                  fontSize: '20px',
+                  justifySelf: 'flex-end',
+                  alignSelf: 'flex-end',
+                }}
+                variant="outlined"
+                fullWidth
+                onClick={handleLogin}
+              >
+                Login
+              </Button>
+            </div>
+          )}
 
           {/* <div className="property-sidebar">
           <label for=/>

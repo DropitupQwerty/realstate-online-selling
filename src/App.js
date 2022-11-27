@@ -5,6 +5,7 @@ import Homepage from './page/home';
 import Login from './page/login';
 import SignUp from './page/signup';
 import ViewProperty from './page/ViewProperty';
+import Reservation from './page/Inquire';
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
           <Route index element={<Homepage />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/sign-up" element={<SignUp />}></Route>
-          <Route path="/viewproperty/:id" element={<ViewProperty />}></Route>
+          <Route path="/viewproperty/:id" element={<ViewProperty />} />
+          <Route path="/reservation/:id" element={<Reservation />} />
         </Routes>
       </Router>
     </ThemeProvider>
