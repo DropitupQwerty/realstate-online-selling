@@ -42,6 +42,8 @@ const property = [
     image: [house3],
     hectare: 126,
     property: '2 Storey house',
+    locationURL:
+      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61672.895203365384!2d120.84931486151052!3d14.961812739935322!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x339700001fd7ca4b%3A0x48933424030540dd!2sBaliuag%2C%20Bulacan!5e0!3m2!1sen!2sph!4v1669569710947!5m2!1sen!2sph',
     description: 'lorem alot',
   },
   {
@@ -51,6 +53,8 @@ const property = [
     image: [house4],
     hectare: 100,
     property: 'Complete House',
+    locationURL:
+      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3857.5116122497607!2d121.0509002505432!3d14.796517276161229!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397afbccd46581f%3A0xa7306d24c5da0543!2sMarcela%20Village%2C%20San%20Jose%20del%20Monte%20City%2C%20Bulacan!5e0!3m2!1sen!2sph!4v1669569835529!5m2!1sen!2sph',
     facilities: [{ bedroom: 1 }, { bathroom: 1 }, { kitchen: 1 }, { cctv: 1 }],
     description: 'lorem alot',
   },

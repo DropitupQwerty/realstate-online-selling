@@ -10,7 +10,15 @@ import Navbar from '../components/Navbar';
 import { getProperty } from '../fakeApi/fakehouesapi';
 import '../components/styles/ViewPropertyStyles.css';
 import Carousel from 'react-bootstrap/Carousel';
-import { Button, IconButton, Input } from '@mui/material';
+import {
+  Button,
+  FormControl,
+  FormGroup,
+  IconButton,
+  Input,
+  OutlinedInput,
+  Paper,
+} from '@mui/material';
 import global from '../styles/global';
 import Footer from '../components/Footer';
 
@@ -137,7 +145,8 @@ export default function ViewProperty() {
                   ...global.buttonLogin,
                 }}
                 fullWidth
-                onClick={handleNavigate}
+                component="a"
+                href="#inquire"
               >
                 Inquire
               </Button>
@@ -145,6 +154,7 @@ export default function ViewProperty() {
                 fullWidth
                 variant="outlined"
                 sx={{ fontSize: '20px', marginTop: '20px' }}
+                onClick={handleNavigate}
               >
                 Reserve Property
               </Button>
@@ -190,6 +200,76 @@ export default function ViewProperty() {
           // loading="lazy"
           // referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
+        <div>
+          <Paper
+            sx={{
+              padding: '30px',
+              position: 'relative',
+              margin: '50px 100px',
+            }}
+          >
+            <div className="reservation-form-container">
+              <FormGroup sx={{ width: '60%' }}>
+                <h2>Im interested in</h2>
+                <FormControl>
+                  <OutlinedInput
+                    readOnly
+                    sx={{ ...global.formInput }}
+                    value={prop}
+                  />
+                </FormControl>
+                <h2>Send your message</h2>
+                <FormControl>
+                  <OutlinedInput
+                    sx={{
+                      ...global.formInput,
+                    }}
+                    multiline
+                    rows={4}
+                    placeholder="Message"
+                  />
+                </FormControl>
+
+                <div>
+                  <h2> Best day of the week & Best time to call</h2>
+
+                  <div className="meeting-date" id="inquire">
+                    <div className="meeting-date-form">
+                      <FormControl>
+                        <OutlinedInput
+                          sx={{
+                            ...global.formInput,
+                            width: '200px',
+                            margin: '0 20px ',
+                          }}
+                          type="date"
+                        />
+                      </FormControl>
+                      <FormControl>
+                        <OutlinedInput
+                          sx={{
+                            ...global.formInput,
+                            width: '200px',
+                            margin: '0 20px ',
+                          }}
+                          type="time"
+                        />
+                      </FormControl>
+                    </div>
+                    <div>
+                      <Button
+                        color="success"
+                        sx={{ ...global.btnPrimary, width: '200px' }}
+                      >
+                        Submit
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </FormGroup>
+            </div>
+          </Paper>
+        </div>
       </div>
 
       <Footer />

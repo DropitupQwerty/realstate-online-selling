@@ -34,12 +34,6 @@ export default function Navbar() {
           </li>
         </ul>
         <ul className="nav-list">
-          {auth ? (
-            <li className="nav-item">
-              <Link>MY ACCOUNT</Link>
-            </li>
-          ) : null}
-
           <li className="nav-item">
             {auth ? (
               <Button sx={{ ...global.btnPrimary }} onClick={logout}>
