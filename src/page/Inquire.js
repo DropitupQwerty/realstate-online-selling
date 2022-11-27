@@ -14,11 +14,13 @@ import Footer from '../components/Footer';
 import { getProperty } from '../fakeApi/fakehouesapi';
 import { useParams, useNavigate } from 'react-router-dom';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { getUser } from './../fakeApi/fakeUserApi';
 
 export default function Reservation({ open, cancel }) {
   const [property, setProperty] = useState();
   const { id } = useParams();
   const navigate = useNavigate();
+  const [user, setUser] = useState();
 
   const {
     image,
@@ -30,15 +32,21 @@ export default function Reservation({ open, cancel }) {
     locationURL,
   } = property || {};
 
+  const { fullname, contact, address, email } = user || {};
+
   useEffect(() => {
     const getProp = () => {
       const p = getProperty(parseInt(id));
+      const u = getUser(1);
+
+      setUser(u);
       setProperty(p);
     };
     getProp();
   }, [id]);
 
   console.log(property);
+  console.log(fullname);
 
   return (
     <div>
@@ -64,37 +72,6 @@ export default function Reservation({ open, cancel }) {
         }}
       >
         <img src={image?.[0]} alt={property} className="property-img" />
-      </Paper>
-      <Typography sx={{ textAlign: 'center', margin: '0' }} variant="h3">
-        Personal Information
-      </Typography>
-      <Paper
-        sx={{
-          padding: '10px',
-          position: 'relative',
-          margin: '50px 100px',
-        }}
-      >
-        <div className="reservation-form-container">
-          <FormGroup sx={{ width: '60%' }}>
-            <FormControl>
-              <Typography variant="h5">Fullname</Typography>
-              <OutlinedInput
-                readOnly
-                sx={{ ...global.formInput }}
-                value={prop}
-              />
-            </FormControl>
-            <FormControl>
-              <Typography variant="h5">Fullname</Typography>
-              <OutlinedInput
-                readOnly
-                sx={{ ...global.formInput }}
-                value={prop}
-              />
-            </FormControl>
-          </FormGroup>
-        </div>
       </Paper>
 
       <Typography sx={{ textAlign: 'center', margin: '0' }} variant="h3">
@@ -156,17 +133,65 @@ export default function Reservation({ open, cancel }) {
                     />
                   </FormControl>
                 </div>
-                <div>
-                  <Button
-                    color="success"
-                    sx={{ ...global.btnPrimary, width: '200px' }}
-                  >
-                    Submit
-                  </Button>
-                </div>
               </div>
             </div>
           </FormGroup>
+        </div>
+      </Paper>
+
+      <Typography sx={{ textAlign: 'center', margin: '0' }} variant="h3">
+        Personal Information
+      </Typography>
+      <Paper
+        sx={{
+          padding: '40px 30px',
+          position: 'relative',
+          margin: '50px 100px',
+        }}
+      >
+        <div className="reservation-form-container">
+          <FormGroup sx={{ width: '60%' }}>
+            <FormControl>
+              <Typography variant="h5">Fullname</Typography>
+              <OutlinedInput
+                readOnly
+                sx={{ ...global.formInput }}
+                value={fullname}
+              />
+            </FormControl>
+            <FormControl>
+              <Typography variant="h5">Contact Number</Typography>
+              <OutlinedInput
+                readOnly
+                sx={{ ...global.formInput }}
+                value={contact}
+              />
+            </FormControl>
+            <FormControl>
+              <Typography variant="h5">Email</Typography>
+              <OutlinedInput
+                readOnly
+                sx={{ ...global.formInput }}
+                value={email}
+              />
+            </FormControl>
+            <FormControl>
+              <Typography variant="h5">Address</Typography>
+              <OutlinedInput
+                readOnly
+                sx={{ ...global.formInput }}
+                value={address}
+              />
+            </FormControl>
+          </FormGroup>
+          <div>
+            <Button
+              color="success"
+              sx={{ ...global.btnPrimary, width: '200px' }}
+            >
+              Submit
+            </Button>
+          </div>
         </div>
       </Paper>
 
