@@ -255,6 +255,8 @@ export default function Reservation({ open, cancel }) {
                     Exp Year
                   </Typography>
                   <OutlinedInput name="cardexpyear" value={cardexpyear} />
+                </FormControl>
+                <FormControl>
                   <Typography variant="h5" sx={{ marginTop: '12px' }}>
                     CVV
                   </Typography>
