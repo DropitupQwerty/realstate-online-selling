@@ -18,6 +18,7 @@ import {
   Input,
   OutlinedInput,
   Paper,
+  Typography,
 } from '@mui/material';
 import global from '../styles/global';
 import Footer from '../components/Footer';
@@ -103,7 +104,6 @@ export default function ViewProperty() {
           <ArrowBackIosIcon sx={{ fontSize: '30px' }} />
         </Button>
       </div>
-
       <div className="view-property-container">
         <div className="carousel-container">
           <Carousel activeIndex={index} onSelect={handleSelect}>
@@ -181,7 +181,6 @@ export default function ViewProperty() {
         </div> */}
         </div>
       </div>
-
       <div className="property-description">
         <h1>Description</h1>
         <h2>{description}</h2>
@@ -256,13 +255,33 @@ export default function ViewProperty() {
                         />
                       </FormControl>
                     </div>
+
+                    {auth ? (
+                      <div>
+                        <Typography color="#22bb33" variant="h4">
+                          Valid Credentials Uploaded
+                        </Typography>
+                        <Typography color="#bb2124" variant="h4">
+                          Valid Credentials is not Uploaded
+                        </Typography>
+                      </div>
+                    ) : null}
+
                     <div>
-                      <Button
-                        color="success"
-                        sx={{ ...global.btnPrimary, width: '200px' }}
-                      >
-                        Submit
-                      </Button>
+                      {auth ? (
+                        <Button sx={{ ...global.btnPrimary, width: '200px' }}>
+                          Submit
+                        </Button>
+                      ) : (
+                        <Button
+                          sx={{ ...global.btnPrimary, width: '200px' }}
+                          onClick={handleLogin}
+                          component="a"
+                          href="#login"
+                        >
+                          Login
+                        </Button>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -271,7 +290,6 @@ export default function ViewProperty() {
           </Paper>
         </div>
       </div>
-
       <Footer />
     </div>
   );

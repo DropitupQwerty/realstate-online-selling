@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   FormControl,
   FormGroup,
@@ -16,7 +17,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 import { getProperty } from '../fakeApi/fakehouesapi';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { getUser } from './../fakeApi/fakeUserApi';
 
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
@@ -27,6 +28,7 @@ export default function Reservation({ open, cancel }) {
   const { id } = useParams();
   const navigate = useNavigate();
   const [user, setUser] = useState();
+  const [billingAccount, setBillingAccount] = useState({});
 
   const {
     image,
@@ -39,6 +41,8 @@ export default function Reservation({ open, cancel }) {
   } = property || {};
 
   const { fullname, contact, address, email } = user || {};
+  const { cardname, cardnumber, cardexpmonth, cardexpyear, cardcvv } =
+    billingAccount | {};
 
   useEffect(() => {
     const getProp = () => {
@@ -58,7 +62,11 @@ export default function Reservation({ open, cancel }) {
     });
   }, []);
 
-  console.log(property);
+  const handleChange = (e) => {
+    setBillingAccount({ ...billingAccount, [e.target.name]: e.target.value });
+  };
+
+  console.log(billingAccount);
   console.log(user);
 
   return (
@@ -102,6 +110,20 @@ export default function Reservation({ open, cancel }) {
         }}
       >
         <div className="reservation-form-container">
+          <Button
+            sx={{
+              position: 'absolute',
+              top: '20px',
+              right: '20px',
+              ...global.buttonLogin,
+            }}
+            component={Link}
+            to="/account"
+          >
+            <Typography sx={{ marginRight: '13px' }}>Edit</Typography>
+            <EditIcon />
+          </Button>
+
           <FormGroup sx={{ width: '60%' }}>
             <FormControl>
               <Typography variant="h5">Fullname</Typography>
@@ -137,6 +159,12 @@ export default function Reservation({ open, cancel }) {
             </FormControl>
           </FormGroup>
         </div>
+        <Typography color="#22bb33" variant="h4">
+          Valid Credentials Uploaded
+        </Typography>
+        <Typography color="#bb2124" variant="h4">
+          Valid Credentials is not Uploaded
+        </Typography>
       </Paper>
 
       <Typography sx={{ textAlign: 'center', margin: '0' }} variant="h3">
@@ -150,9 +178,108 @@ export default function Reservation({ open, cancel }) {
           margin: '50px 100px',
         }}
       >
-        <h3> Payment Method</h3>
-      </Paper>
+        <div className="col-50">
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div>
+              <Typography variant="h3">Payment</Typography>
+            </div>
+            <div>
+              <Typography variant="h3">To Pay: ₱ {price * 0.1}</Typography>
+              <Typography variant="caption" sx={{ fontSize: '12px' }}>
+                Minimum of 10% price of the house and lot
+              </Typography>
+            </div>
+          </div>
 
+          <Typography for="fname" variant="h6">
+            Accepted Cards
+          </Typography>
+          <div>
+            <div className="icon-container">
+              <i
+                className="fa fa-cc-visa"
+                style={{ color: 'navy', fontSize: '30px' }}
+              ></i>
+              <i
+                className="fa fa-cc-amex"
+                style={{ color: 'blue', fontSize: '30px' }}
+              ></i>
+              <i
+                className="fa fa-cc-mastercard"
+                style={{ color: 'red', fontSize: '30px' }}
+              ></i>
+              <i
+                className="fa fa-cc-discover"
+                style={{ color: 'orange', fontSize: '30px' }}
+              ></i>
+            </div>
+          </div>
+          <div>
+            <Box component="form">
+              <FormGroup>
+                <FormControl>
+                  <Typography variant="h5" sx={{ marginTop: '12px' }}>
+                    Name on Card
+                  </Typography>
+                  <OutlinedInput
+                    placeholder="eg. John M. Doe"
+                    name="cardname"
+                    value={cardname}
+                    onChange={handleChange}
+                  />
+                </FormControl>
+                <FormControl>
+                  <Typography variant="h5" sx={{ marginTop: '12px' }}>
+                    Credit card number
+                  </Typography>
+                  <OutlinedInput
+                    placeholder="1111-2222-3333-4444"
+                    name="cardnumber"
+                    value={cardnumber}
+                    onChange={handleChange}
+                  />
+                </FormControl>
+                <FormControl>
+                  <Typography variant="h5" sx={{ marginTop: '12px' }}>
+                    Exp Month
+                  </Typography>
+                  <OutlinedInput
+                    name="cardexpmonth"
+                    value={cardexpmonth}
+                    onChange={handleChange}
+                  />
+                </FormControl>
+
+                <FormControl>
+                  <Typography variant="h5" sx={{ marginTop: '12px' }}>
+                    Exp Year
+                  </Typography>
+                  <OutlinedInput name="cardexpyear" value={cardexpyear} />
+                  <Typography variant="h5" sx={{ marginTop: '12px' }}>
+                    CVV
+                  </Typography>
+                  <OutlinedInput
+                    name="cardcvv"
+                    value={cardcvv}
+                    onChange={handleChange}
+                  />
+                </FormControl>
+              </FormGroup>
+
+              <Typography sx={{ marginTop: '20px' }} variant="h6">
+                Make your payment directly into our bank account via bank
+                transfer or cash deposit
+              </Typography>
+
+              <div>
+                <Button sx={{ ...global.btnPrimary, width: '400px' }}>
+                  PROCEED PAYMENT
+                </Button>
+              </div>
+            </Box>
+          </div>
+        </div>
+      </Paper>
       <Footer />
     </div>
   );

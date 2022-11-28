@@ -6,6 +6,7 @@ import Login from './page/login';
 import SignUp from './page/signup';
 import ViewProperty from './page/ViewProperty';
 import Reservation from './page/Inquire';
+import Account from './page/Account';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/sign-up" element={<SignUp />}></Route>
           <Route path="/viewproperty/:id" element={<ViewProperty />} />
           <Route path="/reservation/:id" element={<Reservation />} />
+          <Route path="/account" element={<Account />} />
         </Routes>
       </Router>
     </ThemeProvider>

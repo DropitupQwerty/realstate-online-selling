@@ -12,7 +12,7 @@ export default function Homepage() {
       <div>
         <div className="hero-container">
           <div>
-            <h1 className="hero-header">INQUIRE PROPERTY NOW</h1>
+            <h1 className="hero-header">BUY PROPERTY NOW</h1>
           </div>
         </div>
         <div>

@@ -84,7 +84,7 @@ export default function SignUp() {
             }}
             variant="h4"
           >
-            Realstate New City in Cavite is a master-planned township where
+            Realstate inquiry and reservation is a master-planned township where
             everything your family could possibly need are within reach. Apart
             from offering premium yet affordable townhouses and single attached
             homes for sale in Cavite, we also have The Parish of the Holy

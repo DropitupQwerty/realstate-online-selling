@@ -14,6 +14,13 @@ const global = {
     color: '#fff',
     fontSize: '20px',
     background: '#1A73E8',
+    padding: '10px 40px',
+  },
+  btnSecondary: {
+    color: '#fff',
+    fontSize: '20px',
+    background: '#B33A3A',
+    padding: '10px 40px',
   },
 };
 export default global;
