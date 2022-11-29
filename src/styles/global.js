@@ -12,13 +12,13 @@ const global = {
   },
   btnPrimary: {
     color: '#fff',
-    fontSize: '20px',
+    fontSize: '15px',
     background: '#1A73E8',
-    padding: '10px 40px',
+    padding: '5px 40px',
   },
   btnSecondary: {
     color: '#fff',
-    fontSize: '20px',
+    fontSize: '15px',
     background: '#B33A3A',
     padding: '10px 40px',
   },

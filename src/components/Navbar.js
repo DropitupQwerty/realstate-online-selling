@@ -4,11 +4,14 @@ import { Button } from '@mui/material';
 import global from '../styles/global';
 import Account from '../page/Account';
 import Reservation from './../page/Inquire';
+import LoginOrSignUp from './LoginOrSignUp';
+import Login from '../page/login';
 
 export default function Navbar() {
   const navigate = useNavigate();
   const [auth, setAuth] = useState(false);
   const [open, setOpen] = useState(false);
+  const [openLogin, setOpenLogin] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -26,8 +29,30 @@ export default function Navbar() {
     navigate('/');
   };
 
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpenLogin = () => {
+    setOpenLogin(true);
+    setOpen(false);
+  };
+  const closeLogin = () => {
+    setOpenLogin(false);
+  };
+
   return (
     <div>
+      <LoginOrSignUp
+        cancel={handleClose}
+        open={open}
+        openLogin={handleOpenLogin}
+      />
+      <Login open={openLogin} cancel={closeLogin} />
       <nav className="nav-container">
         <ul className="nav-list">
           <li className="nav-item">
@@ -36,15 +61,18 @@ export default function Navbar() {
             </span>
           </li>
         </ul>
-        <ul className="nav-list">
+        <ul
+          className="nav-list"
+          style={{ display: 'flex', alignItems: 'center' }}
+        >
           <li className="nav-item">
-            <span className="company-name">
+            <span>
               <Link to="/">Home</Link>
             </span>
           </li>
           {auth ? (
             <li className="nav-item">
-              <span className="company-name">
+              <span>
                 <Link to="/account">My Account</Link>
               </span>
             </li>
@@ -56,11 +84,7 @@ export default function Navbar() {
                 Logout
               </Button>
             ) : (
-              <Button
-                sx={{ ...global.btnPrimary }}
-                component={Link}
-                to="/sign-up"
-              >
+              <Button sx={{ ...global.btnPrimary }} onClick={handleOpen}>
                 Inquire Now
               </Button>
             )}

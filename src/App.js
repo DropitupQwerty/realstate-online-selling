@@ -7,6 +7,11 @@ import SignUp from './page/signup';
 import ViewProperty from './page/ViewProperty';
 import Reservation from './page/Inquire';
 import Account from './page/Account';
+import AdminLogin from './page/admin/Login';
+import Inquiries from './page/admin/Inquiries';
+import AdminDrawer from './components/AdminDrawer';
+import Reservations from './page/admin/Reservations';
+import AdminAccount from './page/admin/AdminAccount';
 
 function App() {
   return (
@@ -19,6 +24,13 @@ function App() {
           <Route path="/viewproperty/:id" element={<ViewProperty />} />
           <Route path="/reservation/:id" element={<Reservation />} />
           <Route path="/account" element={<Account />} />
+
+          <Route path="/admin" element={<AdminLogin />} />
+          <Route element={<AdminDrawer />}>
+            <Route path="/admin/inquiries" element={<Inquiries />} />
+            <Route path="/admin/reservations" element={<Reservations />} />
+            <Route path="/admin/account" element={<AdminAccount />} />
+          </Route>
         </Routes>
       </Router>
     </ThemeProvider>

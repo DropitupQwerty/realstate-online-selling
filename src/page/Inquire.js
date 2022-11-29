@@ -57,7 +57,6 @@ export default function Reservation({ open, cancel }) {
     const uid = sessionStorage.getItem('UID');
     axios.get(`http://localhost:3001/user/fetch/${uid}`).then((res) => {
       console.log(res.data);
-
       setUser(res.data);
     });
   }, []);
@@ -66,8 +65,11 @@ export default function Reservation({ open, cancel }) {
     setBillingAccount({ ...billingAccount, [e.target.name]: e.target.value });
   };
 
-  console.log(billingAccount);
-  console.log(user);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log('Submitted');
+  };
 
   return (
     <div>
@@ -215,7 +217,7 @@ export default function Reservation({ open, cancel }) {
             </div>
           </div>
           <div>
-            <Box component="form">
+            <Box component="form" onSubmit={handleSubmit}>
               <FormGroup>
                 <FormControl>
                   <Typography variant="h5" sx={{ marginTop: '12px' }}>
@@ -226,6 +228,7 @@ export default function Reservation({ open, cancel }) {
                     name="cardname"
                     value={cardname}
                     onChange={handleChange}
+                    required
                   />
                 </FormControl>
                 <FormControl>
@@ -237,6 +240,7 @@ export default function Reservation({ open, cancel }) {
                     name="cardnumber"
                     value={cardnumber}
                     onChange={handleChange}
+                    required
                   />
                 </FormControl>
                 <FormControl>
@@ -247,6 +251,7 @@ export default function Reservation({ open, cancel }) {
                     name="cardexpmonth"
                     value={cardexpmonth}
                     onChange={handleChange}
+                    required
                   />
                 </FormControl>
 
@@ -264,6 +269,7 @@ export default function Reservation({ open, cancel }) {
                     name="cardcvv"
                     value={cardcvv}
                     onChange={handleChange}
+                    required
                   />
                 </FormControl>
               </FormGroup>
@@ -274,7 +280,10 @@ export default function Reservation({ open, cancel }) {
               </Typography>
 
               <div>
-                <Button sx={{ ...global.btnPrimary, width: '400px' }}>
+                <Button
+                  sx={{ ...global.btnPrimary, width: '400px' }}
+                  type="submit"
+                >
                   PROCEED PAYMENT
                 </Button>
               </div>
