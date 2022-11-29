@@ -15,15 +15,28 @@ import axios from 'axios';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { storage } from '../service/firebase-config';
+import { async } from '@firebase/util';
 
 export default function Account() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({
+    fullname: '',
+    contact: '',
+    address: '',
+    email: '',
+    password: '',
+    credentialurl: '',
+  });
   const { fullname, contact, address, email, password } = user || {};
-  const [file, setFile] = useState();
+  const [files, setFiles] = useState([]);
   const navigate = useNavigate();
+  const uid = sessionStorage.getItem('UID');
 
-  const handleFileUpload = (event) => {
-    console.log(event.target.files[0].name);
+  const handleFileUpload = (e) => {
+    setFiles(e.target.files);
+
+    console.log(e.target.files);
   };
 
   const handleChange = (e) => {
@@ -31,12 +44,46 @@ export default function Account() {
   };
 
   const handleSubmit = () => {
-    console.log('submmited');
+    const profileRef = ref(storage, `credentials/`);
+    const uploadTask = uploadBytesResumable(profileRef, files);
+
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
+      },
+      (error) => {
+        alert('image error', error.message);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref)
+          .then(async (downloadURL) => {
+            setUser({ ...user, credentialurl: downloadURL });
+            console.log(downloadURL);
+          })
+          .then(async () => {
+            // let uid = sessionStorage.getItem('UID');
+            // console.log(uid);
+            axios
+              .post(`http://localhost:3001/user/edit/${uid}`, user)
+              .then(() => {
+                console.log('Uploaded');
+              })
+              .catch((err) => {
+                console.log('Failed');
+              });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    );
   };
 
+  console.log(user);
   useEffect(() => {
-    const uid = sessionStorage.getItem('UID');
-
     axios.get(`http://localhost:3001/user/fetch/${uid}`).then((res) => {
       setUser(res.data);
     });
@@ -115,7 +162,7 @@ export default function Account() {
               sx={{ marginTop: '12px', ...global.buttonLogin }}
             >
               Upload File
-              <input hidden multiple type="file" onChange={handleFileUpload} />
+              <input hidden type="file" onChange={handleFileUpload} />
             </Button>
             <div style={{ marginLeft: '20px' }}>
               <Typography variant="h5" color="#22bb33">

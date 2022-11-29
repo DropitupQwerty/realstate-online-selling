@@ -71,6 +71,8 @@ export default function Reservation({ open, cancel }) {
     console.log('Submitted');
   };
 
+  console.log(user);
+
   return (
     <div>
       <div>
