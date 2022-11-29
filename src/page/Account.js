@@ -28,7 +28,8 @@ export default function Account() {
     password: '',
     credentialurl: '',
   });
-  const { fullname, contact, address, email, password } = user || {};
+  const { fullname, contact, address, email, password, credentialurl } =
+    user || {};
   const [files, setFiles] = useState([]);
   const navigate = useNavigate();
   const uid = sessionStorage.getItem('UID');
@@ -66,6 +67,8 @@ export default function Account() {
           .then(async () => {
             // let uid = sessionStorage.getItem('UID');
             // console.log(uid);
+
+            console.log(user);
             axios
               .post(`http://localhost:3001/user/edit/${uid}`, user)
               .then(() => {
@@ -152,8 +155,11 @@ export default function Account() {
         </div>
 
         <div>
-          <Typography variant="h3" sx={{ margin: '40px 0' }}>
-            Upload Valid Credentials
+          <Typography variant="h3">Upload Valid Credentials</Typography>
+          <Typography variant="h5">
+            Your personal data will be used to process your order, support your
+            experience throughout this website, and for other purposes described
+            in our privacy policy
           </Typography>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <Button
@@ -164,13 +170,20 @@ export default function Account() {
               Upload File
               <input hidden type="file" onChange={handleFileUpload} />
             </Button>
-            <div style={{ marginLeft: '20px' }}>
-              <Typography variant="h5" color="#22bb33">
-                Uploaded
-              </Typography>
-              <Typography variant="h5" color="	#bb2124">
-                Not Uploaded
-              </Typography>
+            <div
+              style={{
+                marginLeft: '20px',
+              }}
+            >
+              {credentialurl ? (
+                <Typography variant="h5" color="#22bb33">
+                  Uploaded
+                </Typography>
+              ) : (
+                <Typography variant="h5" color="	#bb2124">
+                  Not Uploaded
+                </Typography>
+              )}
             </div>
           </div>
         </div>
