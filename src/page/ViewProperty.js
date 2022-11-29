@@ -153,7 +153,11 @@ export default function ViewProperty() {
               <Button
                 fullWidth
                 variant="outlined"
-                sx={{ fontSize: '20px', marginTop: '20px' }}
+                sx={{
+                  fontSize: '15px',
+                  marginTop: '20px',
+                  padding: '5px 40px',
+                }}
                 onClick={handleNavigate}
               >
                 Reserve Property

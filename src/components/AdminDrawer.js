@@ -21,7 +21,7 @@ import ViewListIcon from '@mui/icons-material/ViewList';
 import { Link, Outlet } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import AccountCircle from '@mui/icons-material/AccountCircle';
+import HomeIcon from '@mui/icons-material/Home';
 
 const drawerWidth = 240;
 
@@ -33,6 +33,11 @@ function AdminDrawer({ children }) {
   };
 
   const menus = [
+    {
+      label: 'Properties',
+      link: '/admin/properties',
+      icon: <HomeIcon sx={{ fontSize: '20px' }} />,
+    },
     {
       label: 'Inquiries',
       link: '/admin/inquiries',
@@ -71,7 +76,7 @@ function AdminDrawer({ children }) {
       <Divider />
       <List>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton component={Link} to={'/admin'}>
             <ListItemIcon>
               <LogoutIcon sx={{ fontSize: '20px' }} />
             </ListItemIcon>

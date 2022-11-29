@@ -3,7 +3,6 @@ import React from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import global from '../styles/global';
 import { Link } from 'react-router-dom';
-import Login from './../page/login';
 
 export default function LoginOrSignUp({ open, cancel, openLogin }) {
   return (

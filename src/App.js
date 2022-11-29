@@ -12,6 +12,7 @@ import Inquiries from './page/admin/Inquiries';
 import AdminDrawer from './components/AdminDrawer';
 import Reservations from './page/admin/Reservations';
 import AdminAccount from './page/admin/AdminAccount';
+import Properties from './page/admin/Properties';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/admin" element={<AdminLogin />} />
           <Route element={<AdminDrawer />}>
             <Route path="/admin/inquiries" element={<Inquiries />} />
+            <Route path="/admin/Properties" element={<Properties />} />
             <Route path="/admin/reservations" element={<Reservations />} />
             <Route path="/admin/account" element={<AdminAccount />} />
           </Route>

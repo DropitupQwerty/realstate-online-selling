@@ -26,7 +26,7 @@ export default function Navbar() {
 
   const logout = () => {
     sessionStorage.removeItem('UID');
-    navigate('/');
+    window.location.replace('/');
   };
 
   const handleOpen = () => {

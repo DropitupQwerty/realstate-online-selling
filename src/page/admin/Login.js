@@ -34,14 +34,14 @@ export default function AdminLogin() {
         >
           Adminastrator Login
         </Typography>
-        <Paper sx={{ width: '400px', height: '400px', padding: '40px' }}>
+        <Paper sx={{ width: '500px', height: '400px', padding: '40px' }}>
           <FormGroup>
             <FormControl>
-              <Typography variant="h4">Username</Typography>
+              <Typography variant="h4">Username : </Typography>
               <OutlinedInput sx={{ ...global.formInput }}></OutlinedInput>
             </FormControl>
             <FormControl>
-              <Typography variant="h4">Password</Typography>
+              <Typography variant="h4">Password : </Typography>
               <OutlinedInput sx={{ ...global.formInput }}></OutlinedInput>
             </FormControl>
             <FormControl>

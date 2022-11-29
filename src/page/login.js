@@ -38,7 +38,7 @@ export default function Login({ open, cancel, isNavigate = false }) {
 
       console.log(response.data);
       sessionStorage.setItem('UID', response.data.uid);
-      navigate('/');
+      window.location.replace('/');
     });
   };
 
