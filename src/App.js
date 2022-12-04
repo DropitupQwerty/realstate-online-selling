@@ -13,6 +13,8 @@ import AdminDrawer from './components/AdminDrawer';
 import Reservations from './page/admin/Reservations';
 import AdminAccount from './page/admin/AdminAccount';
 import Properties from './page/admin/Properties';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -35,6 +37,7 @@ function App() {
           </Route>
         </Routes>
       </Router>
+      <ToastContainer autoClose={2000} />
     </ThemeProvider>
   );
 }

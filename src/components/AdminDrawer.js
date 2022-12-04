@@ -33,11 +33,11 @@ function AdminDrawer({ children }) {
   };
 
   const menus = [
-    {
-      label: 'Properties',
-      link: '/admin/properties',
-      icon: <HomeIcon sx={{ fontSize: '20px' }} />,
-    },
+    // {
+    //   label: 'Properties',
+    //   link: '/admin/properties',
+    //   icon: <HomeIcon sx={{ fontSize: '20px' }} />,
+    // },
     {
       label: 'Inquiries',
       link: '/admin/inquiries',

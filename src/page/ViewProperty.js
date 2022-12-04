@@ -14,8 +14,6 @@ import {
   Button,
   FormControl,
   FormGroup,
-  IconButton,
-  Input,
   OutlinedInput,
   Paper,
   Typography,
@@ -25,8 +23,9 @@ import Footer from '../components/Footer';
 
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import Facilities from '../components/Facilities';
-import Reservation from './Inquire';
 import Login from './login';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export default function ViewProperty() {
   const [property, setProperty] = useState();
@@ -36,13 +35,18 @@ export default function ViewProperty() {
   const navigate = useNavigate();
   const [auth, setAuth] = useState(false);
   const [open, setOpen] = useState(false);
-  const location = useLocation();
+  const [user, setUser] = useState({
+    fullname: '',
+    contact: '',
+    address: '',
+    email: '',
+    password: '',
+    credentialurl: '',
+  });
+  let uid = sessionStorage.getItem('UID');
 
-  const handleSelect = (selectedIndex, e) => {
-    setIndex(selectedIndex);
-  };
-
-  console.log(location);
+  const { fullname, contact, address, email, password, credentialurl } =
+    user || {};
 
   const {
     image,
@@ -53,6 +57,12 @@ export default function ViewProperty() {
     location: loc,
     locationURL,
   } = property || {};
+
+  const [inquire, setInquire] = useState({
+    message: '',
+    date: '',
+    time: '',
+  });
 
   let nf = new Intl.NumberFormat('en-US'); // "1,234,567,890"
 
@@ -73,13 +83,43 @@ export default function ViewProperty() {
     navigate(`/reservation/${intId}`);
   };
 
+  const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setInquire({
+      ...inquire,
+      fullname: fullname,
+      contact: contact,
+      address: address,
+      email: email,
+      property: prop,
+    });
+
+    axios
+      .post('http://localhost:3001/inquiry/save', inquire)
+      .then((res) => {
+        console.log('done');
+        toast.success('Inquiry Submitted');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    console.log(inquire);
+  };
+
+  const handleChange = (e) => {
+    setInquire({ ...inquire, [e.target.name]: e.target.value });
+  };
+
   useEffect(() => {
     getProp();
   }, [id]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      let uid = sessionStorage.getItem('UID');
       if (!uid) {
         setAuth(false);
       } else {
@@ -87,6 +127,15 @@ export default function ViewProperty() {
       }
     }, 10);
   }, []);
+
+  useEffect(() => {
+    axios.get(`http://localhost:3001/user/fetch/${uid}`).then((res) => {
+      setUser(res.data);
+    });
+  }, []);
+
+  console.log('user : ', user);
+  console.log('Inquries : ', inquire);
 
   return (
     <div>
@@ -195,103 +244,121 @@ export default function ViewProperty() {
         <iframe
           src={locationURL}
           style={{ width: '100%', height: '450px', border: '0' }}
-
-          // width="600"
-          // height="450"
-          // style="border:0;"
-          // allowfullscreen=""
-          // loading="lazy"
-          // referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
         <div>
-          <Paper
-            sx={{
-              padding: '30px',
-              position: 'relative',
-              margin: '50px 100px',
-            }}
-          >
-            <div className="reservation-form-container">
-              <FormGroup sx={{ width: '60%' }}>
-                <h2>Im interested in</h2>
-                <FormControl>
-                  <OutlinedInput
-                    readOnly
-                    sx={{ ...global.formInput }}
-                    value={prop}
-                  />
-                </FormControl>
-                <h2>Send your message</h2>
-                <FormControl>
-                  <OutlinedInput
-                    sx={{
-                      ...global.formInput,
-                    }}
-                    multiline
-                    rows={4}
-                    placeholder="Message"
-                  />
-                </FormControl>
-
-                <div>
-                  <h2> Best day of the week & Best time to call</h2>
-
-                  <div className="meeting-date" id="inquire">
-                    <div className="meeting-date-form">
-                      <FormControl>
-                        <OutlinedInput
-                          sx={{
-                            ...global.formInput,
-                            width: '200px',
-                            margin: '0 20px ',
-                          }}
-                          type="date"
-                        />
-                      </FormControl>
-                      <FormControl>
-                        <OutlinedInput
-                          sx={{
-                            ...global.formInput,
-                            width: '200px',
-                            margin: '0 20px ',
-                          }}
-                          type="time"
-                        />
-                      </FormControl>
-                    </div>
-
-                    {auth ? (
-                      <div>
-                        <Typography color="#22bb33" variant="h4">
-                          Valid Credentials Uploaded
+          <form onSubmit={handleSubmit}>
+            <Paper
+              sx={{
+                padding: '30px',
+                position: 'relative',
+                margin: '50px 100px',
+              }}
+            >
+              <div className="reservation-form-container">
+                <FormGroup sx={{ width: '60%' }}>
+                  <h2>Im interested in</h2>
+                  <FormControl>
+                    <OutlinedInput
+                      readOnly
+                      sx={{ ...global.formInput }}
+                      value={prop}
+                    />
+                  </FormControl>
+                  <h2>Send your message</h2>
+                  <FormControl>
+                    <OutlinedInput
+                      sx={{
+                        ...global.formInput,
+                      }}
+                      required
+                      multiline
+                      rows={4}
+                      placeholder="Message"
+                      name="message"
+                      value={inquire.message}
+                      onChange={handleChange}
+                      inputProps={{ maxLength: 120 }}
+                      endAdornment={
+                        <Typography sx={{ marginTop: '100px' }}>
+                          {inquire.message.length + '/120'}
                         </Typography>
-                        <Typography color="#bb2124" variant="h4">
-                          Valid Credentials is not Uploaded
-                        </Typography>
+                      }
+                    />
+                  </FormControl>
+
+                  <div>
+                    <h2> Best day of the week & Best time to call</h2>
+
+                    <div className="meeting-date" id="inquire">
+                      <div className="meeting-date-form">
+                        <FormControl>
+                          <OutlinedInput
+                            sx={{
+                              ...global.formInput,
+                              width: '200px',
+                              margin: '0 20px ',
+                            }}
+                            type="date"
+                            name="date"
+                            value={inquire.date}
+                            onChange={handleChange}
+                            required
+                          />
+                        </FormControl>
+                        <FormControl>
+                          <OutlinedInput
+                            sx={{
+                              ...global.formInput,
+                              width: '200px',
+                              margin: '0 20px ',
+                            }}
+                            type="time"
+                            name="time"
+                            value={inquire.time}
+                            onChange={handleChange}
+                            required
+                          />
+                        </FormControl>
                       </div>
-                    ) : null}
 
-                    <div>
+                      <div>
+                        {auth ? (
+                          credentialurl ? (
+                            <Button
+                              sx={{ ...global.btnPrimary, width: '200px' }}
+                              type="submit"
+                            >
+                              Submit
+                            </Button>
+                          ) : null
+                        ) : (
+                          <Button
+                            sx={{ ...global.btnPrimary, width: '200px' }}
+                            onClick={handleLogin}
+                            component="a"
+                            href="#login"
+                          >
+                            Login
+                          </Button>
+                        )}
+                      </div>
                       {auth ? (
-                        <Button sx={{ ...global.btnPrimary, width: '200px' }}>
-                          Submit
-                        </Button>
-                      ) : (
-                        <Button
-                          sx={{ ...global.btnPrimary, width: '200px' }}
-                          onClick={handleLogin}
-                          component="a"
-                          href="#login"
-                        >
-                          Login
-                        </Button>
-                      )}
+                        credentialurl ? (
+                          <Typography color="#22bb33" variant="h6">
+                            Valid Credentials Uploaded
+                          </Typography>
+                        ) : (
+                          <Typography color="#bb2124" variant="h6">
+                            Valid Credentials is not Uploaded
+                          </Typography>
+                        )
+                      ) : null}
                     </div>
                   </div>
-                </div>
-              </FormGroup>
-            </div>
-          </Paper>
+                </FormGroup>
+              </div>
+            </Paper>
+          </form>
         </div>
       </div>
       <Footer />

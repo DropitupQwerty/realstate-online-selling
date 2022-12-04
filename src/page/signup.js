@@ -20,6 +20,7 @@ import Navbar from '../components/Navbar';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Login from './login';
+import { toast } from 'react-toastify';
 export default function SignUp() {
   const [userInfo, setUserInfo] = useState({
     fullname: '',
@@ -42,6 +43,7 @@ export default function SignUp() {
       .post('http://localhost:3001/user/create', userInfo)
       .then((response) => {
         console.log(response.data);
+        toast.success('Login your Account', { position: 'bottom-center' });
       });
 
     // e.target.reset;
@@ -82,7 +84,7 @@ export default function SignUp() {
               letterSpacing: '2px',
               textAlign: 'justify',
             }}
-            variant="h4"
+            variant="h7"
           >
             Realstate inquiry and reservation is a master-planned township where
             everything your family could possibly need are within reach. Apart
@@ -174,8 +176,9 @@ export default function SignUp() {
                 <FormHelperText
                   sx={{ fontSize: '13px', margin: '15px 0 10px 0' }}
                 >
-                  By continuing, you agree to Canva's <Link>Terms of Use</Link>{' '}
-                  . Read our <Link>Privacy Policy</Link>
+                  By continuing, you agree to Realstate inquiry and reservation{' '}
+                  <Link>Terms of Use</Link> . Read our{' '}
+                  <Link>Privacy Policy</Link>
                 </FormHelperText>
                 <Button sx={{ ...global.buttonLogin }} type="submit">
                   Submit

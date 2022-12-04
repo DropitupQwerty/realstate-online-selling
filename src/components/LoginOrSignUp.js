@@ -45,8 +45,8 @@ export default function LoginOrSignUp({ open, cancel, openLogin }) {
           </Button>
 
           <Typography>
-            By continuing, you agree to Canva's <Link>Terms of Use</Link> . Read
-            our <Link>Privacy Policy</Link>
+            By continuing, you agree to Realstate inquiry and reservation{' '}
+            <Link>Terms of Use</Link> . Read our <Link>Privacy Policy</Link>
           </Typography>
         </Box>
       </Dialog>

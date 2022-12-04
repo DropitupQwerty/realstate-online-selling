@@ -17,7 +17,7 @@ import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { storage } from '../service/firebase-config';
-import { async } from '@firebase/util';
+import { toast } from 'react-toastify';
 
 export default function Account() {
   const [user, setUser] = useState({
@@ -61,22 +61,31 @@ export default function Account() {
       () => {
         getDownloadURL(uploadTask.snapshot.ref)
           .then(async (downloadURL) => {
-            setUser({ ...user, credentialurl: downloadURL });
-            console.log(downloadURL);
-          })
-          .then(async () => {
-            // let uid = sessionStorage.getItem('UID');
-            // console.log(uid);
-
-            console.log(user);
+            // setUser({ ...user, credentialurl: downloadURL });
             axios
-              .post(`http://localhost:3001/user/edit/${uid}`, user)
-              .then(() => {
-                console.log('Uploaded');
+              .post(`http://localhost:3001/user/edit/${uid}`, {
+                user,
+                credentialurl: downloadURL,
               })
+
               .catch((err) => {
                 console.log('Failed');
               });
+            console.log(downloadURL);
+          })
+          .then((r) => {
+            console.log('Uploaded');
+            toast.success('Uploaded', {
+              position: 'bottom-center',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: false,
+              pauseOnHover: false,
+              draggable: false,
+              progress: undefined,
+              theme: 'colored',
+            });
+            navigate(-1);
           })
           .catch((error) => {
             console.log(error);
@@ -167,8 +176,7 @@ export default function Account() {
               component="label"
               sx={{ marginTop: '12px', ...global.buttonLogin }}
             >
-              Upload File
-              <input hidden type="file" onChange={handleFileUpload} />
+              <input type="file" onChange={handleFileUpload} />
             </Button>
             <div
               style={{
