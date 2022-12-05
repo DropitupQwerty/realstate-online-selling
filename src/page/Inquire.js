@@ -40,7 +40,7 @@ export default function Reservation({ open, cancel }) {
     locationURL,
   } = property || {};
 
-  const { fullname, contact, address, email } = user || {};
+  const { fullname, contact, address, email, credentialurl } = user || {};
   const { cardname, cardnumber, cardexpmonth, cardexpyear, cardcvv } =
     billingAccount | {};
 
@@ -68,7 +68,15 @@ export default function Reservation({ open, cancel }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log('Submitted');
+    axios.post('http://localhost:3001/reservation/save', {
+      id,
+      fullname: fullname,
+      contact: contact,
+      address: address,
+      email: email,
+      property: prop,
+      amountpaid: price * 0.1,
+    });
   };
 
   console.log(user);
@@ -163,12 +171,16 @@ export default function Reservation({ open, cancel }) {
             </FormControl>
           </FormGroup>
         </div>
-        <Typography color="#22bb33" variant="h4">
-          Valid Credentials Uploaded
-        </Typography>
-        <Typography color="#bb2124" variant="h4">
-          Valid Credentials is not Uploaded
-        </Typography>
+
+        {credentialurl ? (
+          <Typography color="#22bb33" variant="h7">
+            Valid Credentials Uploaded
+          </Typography>
+        ) : (
+          <Typography color="#bb2124" variant="h7">
+            Valid Credentials is not Uploaded
+          </Typography>
+        )}
       </Paper>
 
       <Typography sx={{ textAlign: 'center', margin: '0' }} variant="h3">
@@ -222,7 +234,7 @@ export default function Reservation({ open, cancel }) {
             <Box component="form" onSubmit={handleSubmit}>
               <FormGroup>
                 <FormControl>
-                  <Typography variant="h5" sx={{ marginTop: '12px' }}>
+                  <Typography variant="h7" sx={{ marginTop: '12px' }}>
                     Name on Card
                   </Typography>
                   <OutlinedInput
@@ -234,7 +246,7 @@ export default function Reservation({ open, cancel }) {
                   />
                 </FormControl>
                 <FormControl>
-                  <Typography variant="h5" sx={{ marginTop: '12px' }}>
+                  <Typography variant="h7" sx={{ marginTop: '12px' }}>
                     Credit card number
                   </Typography>
                   <OutlinedInput
@@ -246,7 +258,7 @@ export default function Reservation({ open, cancel }) {
                   />
                 </FormControl>
                 <FormControl>
-                  <Typography variant="h5" sx={{ marginTop: '12px' }}>
+                  <Typography variant="h7" sx={{ marginTop: '12px' }}>
                     Exp Month
                   </Typography>
                   <OutlinedInput
@@ -254,17 +266,22 @@ export default function Reservation({ open, cancel }) {
                     value={cardexpmonth}
                     onChange={handleChange}
                     required
+                    placeholder="eg. 11"
                   />
                 </FormControl>
 
                 <FormControl>
-                  <Typography variant="h5" sx={{ marginTop: '12px' }}>
+                  <Typography variant="h7" sx={{ marginTop: '12px' }}>
                     Exp Year
                   </Typography>
-                  <OutlinedInput name="cardexpyear" value={cardexpyear} />
+                  <OutlinedInput
+                    name="cardexpyear"
+                    value={cardexpyear}
+                    placeholder="eg. 11"
+                  />
                 </FormControl>
                 <FormControl>
-                  <Typography variant="h5" sx={{ marginTop: '12px' }}>
+                  <Typography variant="h7" sx={{ marginTop: '12px' }}>
                     CVV
                   </Typography>
                   <OutlinedInput

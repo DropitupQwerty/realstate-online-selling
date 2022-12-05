@@ -21,7 +21,6 @@ import ViewListIcon from '@mui/icons-material/ViewList';
 import { Link, Outlet } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import HomeIcon from '@mui/icons-material/Home';
 
 const drawerWidth = 240;
 
@@ -31,6 +30,8 @@ function AdminDrawer({ children }) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  const [title, setTitle] = React.useState();
 
   const menus = [
     // {
@@ -62,7 +63,11 @@ function AdminDrawer({ children }) {
       <List>
         {menus.map((m) => (
           <ListItem key={m.label} disablePadding>
-            <ListItemButton component={Link} to={m.link}>
+            <ListItemButton
+              component={Link}
+              to={m.link}
+              onClick={() => setTitle(`${m.label}`)}
+            >
               <ListItemIcon>{m.icon}</ListItemIcon>
               <ListItemText
                 primary={
@@ -111,9 +116,15 @@ function AdminDrawer({ children }) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Adminnistrator
-          </Typography>
+          {title ? (
+            <Typography variant="h6" noWrap component="div">
+              {title}
+            </Typography>
+          ) : (
+            <Typography variant="h6" noWrap component="div">
+              Administrator
+            </Typography>
+          )}
         </Toolbar>
       </AppBar>
       <Box

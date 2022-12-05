@@ -44,8 +44,13 @@ export default function Account() {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
+  console.log(files);
+
   const handleSubmit = () => {
-    const profileRef = ref(storage, `credentials/`);
+    const profileRef = ref(
+      storage,
+      `credentials/${user.id}/${files?.[0].name}`
+    );
     const uploadTask = uploadBytesResumable(profileRef, files);
 
     uploadTask.on(
