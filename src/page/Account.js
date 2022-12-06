@@ -190,11 +190,11 @@ export default function Account() {
             >
               {credentialurl ? (
                 <Typography variant="h5" color="#22bb33">
-                  Uploaded
+                  Verified
                 </Typography>
               ) : (
                 <Typography variant="h5" color="	#bb2124">
-                  Not Uploaded
+                  Not Verified
                 </Typography>
               )}
             </div>

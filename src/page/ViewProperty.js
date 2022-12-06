@@ -345,11 +345,11 @@ export default function ViewProperty() {
                       {auth ? (
                         credentialurl ? (
                           <Typography color="#22bb33" variant="h6">
-                            Valid Credentials Uploaded
+                            Verified
                           </Typography>
                         ) : (
                           <Typography color="#bb2124" variant="h6">
-                            Valid Credentials is not Uploaded
+                            Not Verified
                           </Typography>
                         )
                       ) : null}
