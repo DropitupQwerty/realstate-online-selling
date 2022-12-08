@@ -16,7 +16,6 @@ import Properties from './page/admin/Properties';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import Payment from './page/Payment';
-import Reciept from './page/Reciept';
 
 function App() {
   return (
@@ -29,7 +28,6 @@ function App() {
           <Route path="/viewproperty/:id" element={<ViewProperty />} />
           <Route path="/reservation/:id" element={<Reservation />} />
           <Route path="/reservation/:id/payment" element={<Payment />} />
-          <Route path="/reservation/:id/payment/done" element={<Reciept />} />
           <Route path="/account" element={<Account />} />
 
           <Route path="/admin" element={<AdminLogin />} />

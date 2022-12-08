@@ -21,6 +21,7 @@ import { getUser } from './../fakeApi/fakeUserApi';
 
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import EditIcon from '@mui/icons-material/Edit';
+import Reciept from './Reciept';
 
 export default function Payment() {
   const [property, setProperty] = useState();
@@ -28,6 +29,7 @@ export default function Payment() {
   const navigate = useNavigate();
   const [user, setUser] = useState();
   const [billingAccount, setBillingAccount] = useState({});
+  const [openReceipt, setOpenReceipt] = useState(false);
 
   const { property: prop, price, location: loc } = property || {};
 
@@ -73,7 +75,7 @@ export default function Payment() {
         console.log(res.data);
         sessionStorage.setItem('PaymentInfo', JSON.stringify(res.data));
 
-        navigate(`/reservation/${id}/payment/done`);
+        setOpenReceipt(true);
       });
   };
 
@@ -84,7 +86,7 @@ export default function Payment() {
       <div>
         <Navbar />
       </div>
-
+      <Reciept open={openReceipt} />
       <Typography sx={{ textAlign: 'center', margin: '60px' }} variant="h4">
         Reservation Fee
       </Typography>
