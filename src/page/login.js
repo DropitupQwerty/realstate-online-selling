@@ -32,7 +32,7 @@ export default function Login({ open, cancel, isNavigate = false }) {
 
     axios.post('http://localhost:3001/user/login', login).then((response) => {
       if (response.data.error) {
-        console.log(response.data.error);
+        alert(response.data.error);
         return;
       }
 
@@ -88,6 +88,7 @@ export default function Login({ open, cancel, isNavigate = false }) {
                 <OutlinedInput
                   placeholder="Password"
                   name="password"
+                  type="password"
                   value={login.password}
                   onChange={handleChange}
                   sx={{ ...global.formInput }}
