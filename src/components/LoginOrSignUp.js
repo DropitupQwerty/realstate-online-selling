@@ -13,7 +13,7 @@ export default function LoginOrSignUp({ open, cancel, openLogin }) {
             variant="h5"
             sx={{ textAlign: 'center', margin: '10px 0' }}
           >
-            Welcome to Realstate Online Reservation and Inquiry
+            Welcome to Real Estate Online Reservation and Inquiry
           </Typography>
           <IconButton
             sx={{
@@ -45,7 +45,7 @@ export default function LoginOrSignUp({ open, cancel, openLogin }) {
           </Button>
 
           <Typography>
-            By continuing, you agree to Realstate inquiry and reservation{' '}
+            By continuing, you agree to Real Estate inquiry and reservation{' '}
             <Link>Terms of Use</Link> . Read our <Link>Privacy Policy</Link>
           </Typography>
         </Box>

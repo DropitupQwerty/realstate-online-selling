@@ -57,7 +57,7 @@ export default function Navbar() {
         <ul className="nav-list">
           <li className="nav-item">
             <span className="company-name">
-              <Link to="/">Real State Online Reservation and Inquiry</Link>
+              <Link to="/">Real Estate Online Reservation and Inquiry</Link>
             </span>
           </li>
         </ul>

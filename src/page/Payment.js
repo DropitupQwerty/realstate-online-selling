@@ -26,7 +26,6 @@ import Reciept from './Reciept';
 export default function Payment() {
   const [property, setProperty] = useState();
   const { id } = useParams();
-  const navigate = useNavigate();
   const [user, setUser] = useState();
   const [billingAccount, setBillingAccount] = useState({});
   const [openReceipt, setOpenReceipt] = useState(false);

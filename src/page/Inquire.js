@@ -157,9 +157,11 @@ export default function Reservation({ open, cancel }) {
             Valid Credentials Uploaded
           </Typography>
         ) : (
-          <Typography color="#bb2124" variant="h7">
-            Valid Credentials is not Uploaded
-          </Typography>
+          <div>
+            <Typography color="#bb2124" variant="h7">
+              Valid Credentials is not Uploaded
+            </Typography>
+          </div>
         )}
       </Paper>
 

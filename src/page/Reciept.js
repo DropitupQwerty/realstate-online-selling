@@ -29,6 +29,7 @@ export default function Reciept({ open }) {
       alert('Print');
     },
   });
+  let nf = new Intl.NumberFormat('en-US');
 
   console.log(user);
   useEffect(() => {
@@ -73,19 +74,20 @@ export default function Reciept({ open }) {
               >
                 Real State Online Reservation and Inquiry
               </Typography>
+              <Divider />
 
               <Typography>Name: {fullname}</Typography>
               <Typography>Contact Number: {contact}</Typography>
               <Typography>Address: {address}</Typography>
               <Typography>Email Address: {email}</Typography>
               <Typography sx={{ marginTop: '20px' }}>
-                Reserved Property: {property}
+                Reserved Property: <b>{property}</b>
               </Typography>
             </div>
             <div>
               <Divider />
               <Typography variant="h6" sx={{ marginTop: '50px' }}>
-                Amount Paid: ₱ <b>{amountpaid}</b>
+                Amount Paid: ₱ <b>{nf.format(amountpaid)}</b>
               </Typography>
             </div>
           </Paper>

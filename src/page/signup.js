@@ -86,18 +86,19 @@ export default function SignUp() {
             }}
             variant="h7"
           >
-            Realstate inquiry and reservation is a master-planned township where
-            everything your family could possibly need are within reach. Apart
-            from offering premium yet affordable townhouses and single attached
-            homes for sale in Cavite, we also have The Parish of the Holy
-            Family, a place of worship inside Lancaster New City; LNC Grounds,
-            perfect venues for social, commercial, and community activities of
-            the homeowners and their guests; Leighton Hall, a clubhouse with an
-            outdoor pool; The Square, a lifestyle community mall; and St. Edward
-            School. With our affordable house and lot rates in Cavite, there
-            really isn’t a reason for you to keep renting on a townhouse that
-            isn’t yours. Get in touch with one of our real estate agents today
-            to see how you can move into your dream home as soon as possible!
+            Real Estate inquiry and reservation is a master-planned township
+            where everything your family could possibly need are within reach.
+            Apart from offering premium yet affordable townhouses and single
+            attached homes for sale in Cavite, we also have The Parish of the
+            Holy Family, a place of worship inside Lancaster New City; LNC
+            Grounds, perfect venues for social, commercial, and community
+            activities of the homeowners and their guests; Leighton Hall, a
+            clubhouse with an outdoor pool; The Square, a lifestyle community
+            mall; and St. Edward School. With our affordable house and lot rates
+            in Cavite, there really isn’t a reason for you to keep renting on a
+            townhouse that isn’t yours. Get in touch with one of our real estate
+            agents today to see how you can move into your dream home as soon as
+            possible!
           </Typography>
         </Box>
         <Paper
@@ -176,8 +177,8 @@ export default function SignUp() {
                 <FormHelperText
                   sx={{ fontSize: '13px', margin: '15px 0 10px 0' }}
                 >
-                  By continuing, you agree to Realstate inquiry and reservation{' '}
-                  <Link>Terms of Use</Link> . Read our{' '}
+                  By continuing, you agree to Real Estate inquiry and
+                  reservation <Link>Terms of Use</Link> . Read our{' '}
                   <Link>Privacy Policy</Link>
                 </FormHelperText>
                 <Button sx={{ ...global.buttonLogin }} type="submit">

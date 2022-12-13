@@ -86,17 +86,20 @@ export default function ViewProperty() {
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleChange = (e) => {
     setInquire({
       ...inquire,
+      [e.target.name]: e.target.value,
       fullname: fullname,
       contact: contact,
       address: address,
       email: email,
       property: prop,
     });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
     axios
       .post('http://localhost:3001/inquiry/save', inquire)
@@ -108,10 +111,6 @@ export default function ViewProperty() {
         console.log(err);
       });
     console.log(inquire);
-  };
-
-  const handleChange = (e) => {
-    setInquire({ ...inquire, [e.target.name]: e.target.value });
   };
 
   useEffect(() => {
@@ -348,9 +347,22 @@ export default function ViewProperty() {
                             Verified
                           </Typography>
                         ) : (
-                          <Typography color="#bb2124" variant="h6">
-                            Not Verified
-                          </Typography>
+                          <div>
+                            <Typography
+                              color="#bb2124"
+                              variant="h6"
+                              textAlign="center"
+                            >
+                              Not Verified
+                            </Typography>
+                            <Typography>
+                              You can upload your valid credentials in your
+                              account settings. Click
+                              <span>
+                                <Link to="/account">here!</Link>
+                              </span>
+                            </Typography>
+                          </div>
                         )
                       ) : null}
                     </div>

@@ -32,7 +32,8 @@ const property = [
     property: 'Barns and Water Tanks',
     locationURL:
       'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d123327.07189897058!2d120.907960521187!3d14.994315148537193!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397005fc6e4e2c5%3A0x4b387b2ddd4537de!2sSan%20Rafael%2C%20Bulacan!5e0!3m2!1sen!2sph!4v1669470772713!5m2!1sen!2sph',
-    description: 'lorem alot',
+    description:
+      'Development nestled in the heart of Metro Tagaytay, It offers its residents an oasis for recreation and relaxation without leaving the comfort of their homes. Condo-hotels rising in the midst of wide open spaces and natural greeneries make up a great combination of luxury and comfort. Greens are hard to find in the Metro, but at Citi Globals community within a community, you will have plenty of that. Greens everywhere, wide, open spaces, and just the experience of being in touch with nature.',
   },
   {
     id: 3,
@@ -44,19 +45,21 @@ const property = [
     property: '2 Storey house',
     locationURL:
       'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61672.895203365384!2d120.84931486151052!3d14.961812739935322!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x339700001fd7ca4b%3A0x48933424030540dd!2sBaliuag%2C%20Bulacan!5e0!3m2!1sen!2sph!4v1669569710947!5m2!1sen!2sph',
-    description: 'lorem alot',
+    description:
+      'At Empress, your quality of living is our utmost priority. Each Unit is well-lit and well-designed with your ease and comfort in mind. Empress boasts of a Smart Living program in each home. With sohpisticated systems put in place, security and safety are integrated seamlessly into our residents day-to-day lives. Our Smart Living program keeps days fret-free, letting you put yourself first and just be.',
   },
   {
     id: 4,
-    location: 'Marcela Village ,Blk 10 lot 32',
+    location: 'Pasig, Metro Manila',
     price: 20000000,
     image: [house4],
     hectare: 100,
-    property: 'Complete House',
+    property: '2 Bedroom Condo in Empress at Capitol Commons, Pasig',
     locationURL:
-      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3857.5116122497607!2d121.0509002505432!3d14.796517276161229!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397afbccd46581f%3A0xa7306d24c5da0543!2sMarcela%20Village%2C%20San%20Jose%20del%20Monte%20City%2C%20Bulacan!5e0!3m2!1sen!2sph!4v1669569835529!5m2!1sen!2sph',
+      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61781.701619910586!2d121.04606574232501!3d14.578759180091035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c7dc88f7b24f%3A0x4a592b2b4b34fd89!2sPasig%2C%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1670922508701!5m2!1sen!2sph',
     facilities: [{ bedroom: 1 }, { bathroom: 1 }, { kitchen: 1 }, { cctv: 1 }],
-    description: 'lorem alot',
+    description:
+      'At Empress, your quality of living is our utmost priority. Each Unit is well-lit and well-designed with your ease and comfort in mind. Empress boasts of a Smart Living program in each home. With sohpisticated systems put in place, security and safety are integrated seamlessly into our residents day-to-day lives. Our Smart Living program keeps days fret-free, letting you put yourself first and just be.',
   },
 ];
 
